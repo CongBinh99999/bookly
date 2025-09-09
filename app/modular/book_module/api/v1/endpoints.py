@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
 from fastapi.exceptions import HTTPException
-from app.modular.book_module.schemas.book_schemas import BookResponse, BookCreateRequest, BookUpdateRequest
+from app.modular.book_module.schemas.book_schemas import BookCreateModule, BookUpdateModule, BookResponse
 from typing import List
 
 router = APIRouter() 
@@ -10,7 +10,7 @@ async def get_all_books():
     pass
 
 @router.post("", response_model= BookResponse, status_code= status.HTTP_201_CREATED)
-async def create_books(book_data: BookCreateRequest):
+async def create_books(book_data: BookCreateModule):
     new_book = book_data.model_dump() #model_dump() chuyển đổi object -> dict
 
 @router.get("/{book_id}", response_model= BookResponse)
@@ -18,7 +18,7 @@ async def get_book(book_id: int ):
     pass
 
 @router.patch("/{book_id}", response_model= BookResponse)
-async def update_book(book_id: int, update_data: BookUpdateRequest): 
+async def update_book(book_id: int, update_data: BookUpdateModule): 
     pass
 
 

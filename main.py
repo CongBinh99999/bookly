@@ -18,7 +18,7 @@ app = FastAPI(
     lifespan= life_span
 ) 
 
-app.include_router(book_routers, prefix=f"/api/{version}/books")
+app.include_router(book_routers, prefix=f"/api/{version}")
 
 
 

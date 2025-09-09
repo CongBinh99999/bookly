@@ -1,22 +1,33 @@
 from pydantic import BaseModel 
+import uuid
+from datetime import datetime
 
-class BookBase(BaseModel): 
+class Book(BaseModel): 
     title: str 
     author: str
     publisher: str
     published_date: str
     page_count: int
     language: str 
-
-class BookResponse(BookBase): 
-    id: int 
+    created_at: datetime
+    updated_at: datetime 
     
-class BookCreateRequest(BookBase): 
-    pass
 
-class BookUpdateRequest(BaseModel):
-    title: str | None = None  # Optional field cho update
-    author: str | None = None  # Optional field cho update
-    publisher: str | None = None  # Optional field cho update
-    page_count: int | None = None  # Optional field cho update
+class BookResponse(BaseModel): 
+    id: uuid.UUID
+    
+class BookCreateModule(BaseModel): 
+    title: str
+    author: str
+    publisher: str
+    published_date: str
+    created_at: datetime
+    updated_at: datetime 
+
+class BookUpdateModule(BaseModel):
+    title: str | None = None 
+    author: str | None = None
+    publisher: str | None = None
+    page_count: int | None = None
+
 
